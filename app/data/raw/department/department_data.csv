@@ -1,0 +1,5 @@
+department_id,department_name,department_cost_center
+101,Engineering,CC1001
+102,Sales,CC2001
+103,HR,CC3001
+104,Finance,CC4001

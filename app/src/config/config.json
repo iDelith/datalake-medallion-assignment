@@ -1,0 +1,211 @@
+{
+  "generate_employee_workflow": {
+    "workflow_name": "Employee Data Generator",
+    "description": "This pipeline generates a CSV file from a given List[Tuple[str]] object",
+    "stage": "pre_ingestion",
+    "is_active": true,
+    "tasks": {
+      "task_name": "generate_csv_file",
+      "task_type": "file_generation",
+      "parameters": {
+        "log_fields": [
+          "file_name",
+          "file_type",
+          "input_path",
+          "output_path"
+        ],
+        "file_name": "employee_data",
+        "file_type": "csv",
+        "input_path": null,
+        "output_path": "data/raw/employee",
+        "schema": [
+          { "name": "employee_id", "type": "string", "required": true },
+          { "name": "employee_name", "type": "string", "required": true },
+          { "name": "hire_date", "type": "date", "required": true },
+          { "name": "city", "type": "string", "required": true },
+          { "name": "state", "type": "string", "required": true }
+        ],
+        "content": [
+          {
+            "employee_id": "1",
+            "employee_name": "Ana Silva",
+            "hire_date": "2022-01-15",
+            "city": "Campinas",
+            "state": "SP"
+          },
+          {
+            "employee_id": "2",
+            "employee_name": "Bruno Costa",
+            "hire_date": "2021-03-10",
+            "city": "Sao Paulo",
+            "state": "SP"
+          },
+          {
+            "employee_id": "3",
+            "employee_name": "Carla Souza",
+            "hire_date": "2023-07-01",
+            "city": "Rio de Janeiro",
+            "state": "RJ"
+          },
+          {
+            "employee_id": "4",
+            "employee_name": "Diego Lima",
+            "hire_date": "2020-11-20",
+            "city": "Belo Horizonte",
+            "state": "MG"
+          },
+          {
+            "employee_id": "5",
+            "employee_name": "Elisa Rocha",
+            "hire_date": "2019-05-30",
+            "city": "Curitiba",
+            "state": "PR"
+          },
+          {
+            "employee_id": "6",
+            "employee_name": "Felipe Alves",
+            "hire_date": "2024-02-12",
+            "city": "Porto Alegre",
+            "state": "RS"
+          }
+        ]
+      }
+    }
+  },
+  "generate_department_workflow": {
+    "workflow_name": "Department Data Generator",
+    "description": "This pipeline generates a CSV file from a given List[Tuple[str]] object",
+    "stage": "pre_ingestion",
+    "is_active": true,
+    "tasks": {
+      "task_name": "generate_csv_file",
+      "task_type": "file_generation",
+      "parameters": {
+        "log_fields": [
+          "file_name",
+          "file_type",
+          "input_path",
+          "output_path"
+        ],
+        "file_name": "department_data",
+        "file_type": "csv",
+        "input_path": null,
+        "output_path": "data/raw/department",
+        "schema": [
+          { "name": "department_id", "type": "string", "required": true },
+          { "name": "department_name", "type": "string", "required": true },
+          { "name": "department_cost_center", "type": "string", "required": true }
+        ],
+        "content": [
+          {
+            "department_id": "101",
+            "department_name": "Engineering",
+            "department_cost_center": "CC1001"
+          },
+          {
+            "department_id": "102",
+            "department_name": "Sales",
+            "department_cost_center": "CC2001"
+          },
+          {
+            "department_id": "103",
+            "department_name": "HR",
+            "department_cost_center": "CC3001"
+          },
+          {
+            "department_id": "104",
+            "department_name": "Finance",
+            "department_cost_center": "CC4001"
+          }
+        ]
+      }
+    }
+  },
+  "generate_payroll_workflow": {
+    "workflow_name": "Payroll Sample Data Generator",
+    "description": "This pipeline generates a CSV file from a given List[Tuple[str]] object",
+    "stage": "pre_ingestion",
+    "is_active": true,
+    "tasks": {
+      "task_name": "generate_csv_file",
+      "task_type": "file_generation",
+      "parameters": {
+        "log_fields": [
+          "file_name",
+          "file_type",
+          "input_path",
+          "output_path"
+        ],
+        "file_name": "payroll_sample",
+        "file_type": "csv",
+        "input_path": null,
+        "output_path": "data/raw/payroll_sample",
+        "schema": [
+          { "name": "payroll_id", "type": "string", "required": true },
+          { "name": "employee_id", "type": "string", "required": true },
+          { "name": "department_id", "type": "string", "required": true },
+          { "name": "pay_date", "type": "date", "required": true },
+          { "name": "salary_amount", "type": "integer", "required": true }
+        ],
+        "content": [
+          {
+            "payroll_id": "1001",
+            "employee_id": "1",
+            "department_id": "101",
+            "pay_date": "2024-01-31",
+            "salary_amount": "5000"
+          },
+          {
+            "payroll_id": "1002",
+            "employee_id": "2",
+            "department_id": "102",
+            "pay_date": "2024-01-31",
+            "salary_amount": "6250"
+          },
+          {
+            "payroll_id": "1003",
+            "employee_id": "3",
+            "department_id": "101",
+            "pay_date": "2024-01-31",
+            "salary_amount": "5167"
+          },
+          {
+            "payroll_id": "1004",
+            "employee_id": "4",
+            "department_id": "103",
+            "pay_date": "2024-01-31",
+            "salary_amount": "4833"
+          },
+          {
+            "payroll_id": "1005",
+            "employee_id": "5",
+            "department_id": "102",
+            "pay_date": "2024-01-31",
+            "salary_amount": "6667"
+          },
+          {
+            "payroll_id": "1006",
+            "employee_id": "6",
+            "department_id": "104",
+            "pay_date": "2024-01-31",
+            "salary_amount": "4583"
+          },
+          {
+            "payroll_id": "1007",
+            "employee_id": "1",
+            "department_id": "101",
+            "pay_date": "2024-02-29",
+            "salary_amount": "5000"
+          },
+          {
+            "payroll_id": "1008",
+            "employee_id": "2",
+            "department_id": "102",
+            "pay_date": "2024-02-29",
+            "salary_amount": "6250"
+          }
+        ]
+      }
+    }
+  }
+}
