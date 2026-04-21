@@ -19,7 +19,7 @@ not a raw primitive type.
 import csv
 import os
 
-from src.models.config_model import Parameters
+from app.src.models.config_model import Parameters
 
 class CSVWriter:
     def __init__(self, parameters: Parameters):

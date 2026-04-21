@@ -1,0 +1,58 @@
+[project]
+name = "datalake-medallion-assignment"
+version = "0.1.0"
+description = "ETL pipeline orchestrator for medallion architecture"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Bruno Rodrigues", email = "brunrod@live.com" }
+]
+
+dependencies = [
+    "pandas>=2.2.0",
+    "pyspark>=3.5.0"
+]
+
+# Optional CLI entrypoint
+[project.scripts]
+run-pipeline = "app.src.script:main"
+
+# ---------------------------------------------------------------------
+# Dev dependencies (uv uses dependency groups)
+# ---------------------------------------------------------------------
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+
+# ---------------------------------------------------------------------
+# Tool configs
+# ---------------------------------------------------------------------
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+# ---------------------------------------------------------------------
+# Build system (required even if you don’t publish)
+# ---------------------------------------------------------------------
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
