@@ -1,57 +1,26 @@
-#Imports
-#import sys
-#import os
-#sys.path.append("/app")
+from app.src.models.pipeline_orchestrator_model import PipelineOrchestrator
+from app.src.utils.logger import get_logger
+from app.src.writers.csv_writer import CSVWriter
 
-from src.utils.logger import get_logger
-from src.loaders.config_loader import ConfigLoader
-from src.mappers.config_mapper import map_to_workflow
-from src.writers.csv_writer import CSVWriter
-
-
+from pyspark.sql import SparkSession
 
 # ------------------------------------------------------------------------------
 # Main Code
 # ------------------------------------------------------------------------------
+
 logger = get_logger(__name__)
 
+def main():
+    logger.info(f"Pipeline has started.")
+
+    pipeline = PipelineOrchestrator(config_path='app/src/config/config.json')
+
+    pipeline.run_pre_ingestion(writer=CSVWriter)
+
+    logger.info(f"Pipeline has ended.")
 
 
 
 if __name__ == "__main__":
-
-    infra_args = [
-        "generate_employee_workflow",
-        "generate_department_workflow",
-        "generate_payroll_workflow"
-     ]
-
-    logger.info(f"Pipeline has started.")
-
-    loader = ConfigLoader("config/config.json")
-
-    for wkf in infra_args:
-        logger.info(f"Pipeline has started: {wkf}")
-
-        config = loader.load_workflow(wkf)
-        workflow = map_to_workflow(config)
-
-
-        if workflow.tasks.task_type == "file_generation":
-
-            params = workflow.tasks.parameters
-            parameter_fields = params.get_log_fields()
-
-            logger.info(f"Trigger: {workflow.tasks.task_type}")
-            logger.info(f"Parameters: {parameter_fields}")
-
-            writer = CSVWriter(params)
-            output_path = writer.write()
-
-            logger.info(f"File written to: {output_path}")
-
-            logger.info(f"Pipeline has ended: {workflow.workflow_name}")
-
-    logger.info(f"Pipeline has ended.")
-
+    main()
 

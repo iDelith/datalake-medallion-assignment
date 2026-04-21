@@ -17,7 +17,7 @@ config = loader.load_workflow("generate_file_workflow")
 import os
 import json
 from typing import List, Dict, Any
-from mappers.config_mapper import map_to_workflow
+from app.src.mappers.config_mapper import map_single_workflow
 
 
 
@@ -41,7 +41,7 @@ class ConfigLoader:
             raise KeyError(f"Workflow '{workflow_name}' not found in config")
 
         if as_object:
-            return map_to_workflow(data)
+            return map_single_workflow(data)
 
         return data
 

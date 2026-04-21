@@ -17,14 +17,14 @@ workflow = map_to_workflow(config)
 
 """
 
-from src.models.config_model import (
+from app.src.models.config_model import (
   SchemaField,
   Workflow,
   Parameters,
   Task
 )
 
-def map_to_workflow(data: dict) -> Workflow:
+def map_single_workflow(data: dict) -> Workflow:
     task_data = data["tasks"]
     params_data = task_data["parameters"]
 
@@ -53,3 +53,6 @@ def map_to_workflow(data: dict) -> Workflow:
         is_active=data["is_active"],
         tasks=task
     )
+
+def map_to_workflow(config: dict) -> list[Workflow]:
+    return [map_single_workflow(wf) for wf in config.values()]
